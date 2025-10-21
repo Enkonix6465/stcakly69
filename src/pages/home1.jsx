@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import homeheroVideo from "../assets/homehero.mp4";
+// Replaced with a direct ecommerce video from Pexels (MP4, compatible)
+const homeheroVideo = "https://videos.pexels.com/video-files/856192/856192-hd_1920_1080_25fps.mp4"; // Example: woman shopping online, Pexels
 import impactVideo from "../assets/impact.mp4";
 import missionImg from "../assets/mission.jpeg";
 import yogaImg from "../assets/villa.jpg";
@@ -80,40 +81,71 @@ function Hero({ isDarkMode }) {
   );
 }
 
+
 function WhoWeAre({ isDarkMode }) {
-  const { elementRef, isVisible } = useScrollAnimation(0.3, 200);
-  const { translate, isRTL } = useLanguage();
-  const navigate = useNavigate();
-
-  const navigateToAbout = () => {
-    navigate('/about');
-  };
-
+  // Example ecommerce product cards, styled like the attachment
+  const products = [
+    {
+      img: "https://images.pexels.com/photos/374870/pexels-photo-374870.jpeg?auto=compress&w=600&h=400&fit=crop", // Wireless Headphones
+      title: "Wireless Headphones",
+      price: "$59",
+      tag: "Popular",
+      tagColor: "bg-orange-500",
+    },
+    {
+      img: "https://images.pexels.com/photos/2529148/pexels-photo-2529148.jpeg?auto=compress&w=600&h=400&fit=crop", // Trendy Sneakers
+      title: "Trendy Sneakers",
+      price: "$42",
+      tag: "New Arrival",
+      tagColor: "bg-violet-500",
+    },
+    {
+      img: "https://images.pexels.com/photos/190819/pexels-photo-190819.jpeg?auto=compress&w=600&h=400&fit=crop", // Smart Watch
+      title: "Smart Watch",
+      price: "$38",
+      tag: "Premium",
+      tagColor: "bg-blue-500",
+    },
+    {
+      img: "https://images.pexels.com/photos/416471/pexels-photo-416471.jpeg?auto=compress&w=600&h=400&fit=crop", // Eco Water Bottle
+      title: "Eco Water Bottle",
+      price: "$22",
+      tag: "Eco",
+      tagColor: "bg-green-500",
+    },
+    {
+      img: "https://images.pexels.com/photos/5632399/pexels-photo-5632399.jpeg?auto=compress&w=600&h=400&fit=crop", // Fashion Backpack
+      title: "Fashion Backpack",
+      price: "$32",
+      tag: "Best Seller",
+      tagColor: "bg-pink-500",
+    },
+    {
+      img: "https://images.pexels.com/photos/461382/pexels-photo-461382.jpeg?auto=compress&w=600&h=400&fit=crop", // Dessert Candle
+      title: "Dessert Candle",
+      price: "$16",
+      tag: "Dessert",
+      tagColor: "bg-yellow-500",
+    },
+  ];
   return (
-    <section
-      id="who-we-are"
-      ref={elementRef}
-      className={`w-full py-20 px-4 transition-all duration-1000 ease-out ${
-        isVisible ? 'scale-100 opacity-100' : 'scale-90 opacity-0'
-      }`}
-      style={{ backgroundColor: '#6c00b8' }}
-    >
-      <div className={`max-w-7xl mx-auto flex flex-col ${isRTL ? 'md:flex-row-reverse' : 'md:flex-row'} items-center gap-12`}>
-        {/* Ecommerce Experience Card */}
-        <div className="flex flex-col items-center md:items-start md:w-1/3 mb-8 md:mb-0">
-          <div className="bg-[#6c00b8] border border-[#8F00FF] rounded-tl-[3.5rem] rounded-br-[3.5rem] px-10 py-8 flex flex-col items-center shadow-lg">
-            <span className="text-6xl md:text-7xl font-extrabold text-[#8F00FF] leading-none">10+</span>
-            <span className="text-white/70 text-lg mt-2 text-center">Years in Ecommerce</span>
-          </div>
-        </div>
-        {/* Content */}
-        <div className={`flex-1 flex flex-col items-center ${isRTL ? 'md:items-end text-center md:text-right' : 'md:items-start text-center md:text-left'}`}>
-          <span className="uppercase tracking-widest text-[#8F00FF] font-semibold text-sm mb-2">About Shoply</span>
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 leading-tight">Your Trusted Online Shopping Destination</h2>
-          <p className="text-lg text-white/80 mb-8 max-w-xl">
-            Shoply brings you the best in electronics, fashion, home essentials, and more. With over a decade of experience, we deliver quality products, secure payments, and fast shipping to millions of happy customers.
-          </p>
-          <button className="bg-[#8F00FF] text-white px-8 py-3 rounded-full font-semibold shadow hover:bg-[#6c00b8] transition" onClick={navigateToAbout}>Contact Us</button>
+  <section className="w-full py-20 px-4 bg-black">
+      <div className="max-w-7xl mx-auto">
+  <h2 className="text-4xl md:text-5xl font-bold text-center mb-4 text-white">Our Featured Products</h2>
+  <p className="text-center text-gray-200 mb-10">Carefully selected by our team, each product represents the best in quality, value, and style.</p>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+          {products.map((product, idx) => (
+            <div key={idx} className="relative rounded-2xl shadow-lg bg-white overflow-hidden flex flex-col justify-end min-h-[320px] group">
+              <img src={product.img} alt={product.title} className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+              <div className="absolute top-4 right-4 z-10">
+                <span className={`px-4 py-1 rounded-full text-white text-xs font-semibold shadow-lg ${product.tagColor}`}>{product.tag}</span>
+              </div>
+              <div className="relative z-10 p-6 bg-gradient-to-t from-black/70 to-transparent">
+                <h3 className="text-white text-xl font-bold mb-2 drop-shadow">{product.title}</h3>
+                <div className="text-white text-2xl font-extrabold drop-shadow">{product.price}</div>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </section>
@@ -152,25 +184,25 @@ function ServicesOverview({ isDarkMode }) {
 
   const services = [
     {
-      img: "https://images.pexels.com/photos/1054388/pexels-photo-1054388.jpeg?auto=compress&w=600&h=400&fit=crop",
+      img: "https://images.pexels.com/photos/133579/pexels-photo-133579.jpeg?auto=compress&w=600&h=400&fit=crop", // Electronics: modern gadgets
       title: "Electronics",
       tagline: "Latest gadgets, smartphones, and accessories",
       details: "Shop top brands like Apple, Samsung, and Sony. Fast delivery and warranty included."
     },
     {
-      img: "https://images.pexels.com/photos/2983464/pexels-photo-2983464.jpeg?auto=compress&w=600&h=400&fit=crop",
+      img: "https://images.pexels.com/photos/2983464/pexels-photo-2983464.jpeg?auto=compress&w=600&h=400&fit=crop", // Fashion: stylish clothing
       title: "Fashion",
       tagline: "Trendy clothing, shoes, and accessories",
       details: "Discover new arrivals, exclusive deals, and top brands in fashion for men, women, and kids."
     },
     {
-      img: "https://images.pexels.com/photos/164595/pexels-photo-164595.jpeg?auto=compress&w=600&h=400&fit=crop",
+      img: "https://images.pexels.com/photos/271816/pexels-photo-271816.jpeg?auto=compress&w=600&h=400&fit=crop", // Home & Living: cozy living room
       title: "Home & Living",
       tagline: "Furniture, decor, and essentials",
       details: "Upgrade your home with stylish furniture, modern decor, and everyday essentials."
     },
     {
-      img: "https://images.pexels.com/photos/373834/pexels-photo-373834.jpeg?auto=compress&w=600&h=400&fit=crop",
+      img: "https://images.pexels.com/photos/4153140/pexels-photo-4153140.jpeg?auto=compress&w=600&h=400&fit=crop", // Beauty & Health: skincare products
       title: "Beauty & Health",
       tagline: "Skincare, wellness, and personal care",
       details: "Find top-rated beauty, skincare, and health products for every need."
@@ -461,8 +493,8 @@ function CallToActionBanner() {
         }`}>
           <div className="relative w-full max-w-md lg:max-w-lg">
             <img 
-              src={homectaImg} 
-              alt="Shoply Banner" 
+              src="https://images.pexels.com/photos/5632402/pexels-photo-5632402.jpeg?auto=compress&w=800&h=600&fit=crop" 
+              alt="Ecommerce Shopping" 
               className="w-full h-auto rounded-2xl shadow-2xl object-cover"
               style={{ aspectRatio: '16/9' }}
             />

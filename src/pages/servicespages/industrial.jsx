@@ -60,7 +60,7 @@ const Industrial = () => {
             </ul>
           </div>
           <div className="md:w-1/2 flex justify-center">
-            <img src="/src/assets/detailed/Lina Gomez.avif" alt="Electronics" className="rounded-lg shadow-lg w-96 h-64 object-cover" />
+            <img src="https://images.pexels.com/photos/373912/pexels-photo-373912.jpeg?auto=compress&w=800&h=600&fit=crop" alt="Modern Industry" className="rounded-lg shadow-lg w-96 h-64 object-cover" />
           </div>
         </div>
       </section>
